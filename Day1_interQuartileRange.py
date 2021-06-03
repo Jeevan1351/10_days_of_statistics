@@ -1,7 +1,10 @@
-def quartiles(n, arr):
+def quartiles(n, nums, f):
+    arr = []
+    for i in range(n):
+        curr = [nums[i]]*f[i]
+        arr.extend(curr)
     arr.sort()
-    # print(arr)
-    q1, q2, q3 = 0, 0, 0
+    n = sum(f)
     if n % 2 == 0:
         q2 = (arr[n // 2] + arr[n // 2 - 1]) / 2
         if (n / 2) % 2 != 0:
@@ -18,10 +21,7 @@ def quartiles(n, arr):
         else:
             q1 = arr[n // 4]
             q3 = arr[(3 * n) // 4]
-
-    print(int(q1))
-    print(int(q2))
-    print(int(q3))
+    print(round(q3*1.0 - q1, 1))
 
 
 no = int(input())
@@ -29,4 +29,8 @@ values = input().split()
 numbers = []
 for i in values:
     numbers.append(int(i))  # input values and appended them to a list
-quartiles(no, numbers)
+values = input().split()
+frequencies = []
+for i in values:
+    frequencies.append(int(i))
+quartiles(no, numbers, frequencies)
